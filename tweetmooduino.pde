@@ -85,7 +85,7 @@ void showMood(float newMood)
 	else
 	{
 		Serial.print("mood has worsened by ");
-		Serial.print( moodDelta );
+		Serial.print( abs(moodDelta) );
 		Serial.println( " :(" );
 	}
 	
