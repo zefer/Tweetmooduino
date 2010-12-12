@@ -1,0 +1,3 @@
+An Arduino project that controls hardware to react to changes in Twitter mood.
+
+Uses an ethernet shield to access a Twitter sentiment API (via YQL), and responds to changes in sentiment on a subject.
