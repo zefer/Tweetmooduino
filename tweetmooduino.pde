@@ -31,7 +31,7 @@ void loop()
 {
 	if (client.connect())
 	{
-		Serial.print("connected...");
+		Serial.println("connected...");
 		// do the HTTP GET request
 		client.println("GET http://query.yahooapis.com/v1/public/yql?q=SELECT%20sentiment_index%20FROM%20json%20WHERE%20url%20%3D%20%22http://data.tweetsentiments.com:8080/api/search.json%3Ftopic%3Dxfactor%22&format=xml HTTP/1.0");
 		client.println();
@@ -48,10 +48,8 @@ void loop()
 		if(finder.getString("<sentiment_index>","</sentiment_index>",moodstring,5) > 0)
 		{
 			// parse to float
-			mood = atof(moodstring);
-			Serial.print("mood: ");
-			Serial.print(mood);
-			Serial.println();
+			float newMood = atof(moodstring);
+			showMood(newMood);
 		}
 		else
 		{
@@ -68,4 +66,31 @@ void loop()
 	} 
 
 	client.stop();
+}
+
+void showMood(float newMood)
+{
+	float moodDelta = newMood - mood;
+	
+	if( moodDelta == 0 || mood == 0 )
+	{
+		// no mood change or first run
+	}
+	else if( moodDelta > 0 )
+	{
+		Serial.print("mood has improved by ");
+		Serial.print( moodDelta );
+		Serial.println( " :)" );
+	}
+	else
+	{
+		Serial.print("mood has worsened by ");
+		Serial.print( moodDelta );
+		Serial.println( " :(" );
+	}
+	
+	mood = newMood;
+
+	Serial.print("mood: ");
+	Serial.println(newMood);
 }
