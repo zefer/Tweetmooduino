@@ -44,12 +44,13 @@ void loop()
 	if (client.connected())
 	{
 		char moodstring[5];
-		int charcount = finder.getString("<sentiment_index>","</sentiment_index>",moodstring,5);
 
-		if(charcount>0)
+		if(finder.getString("<sentiment_index>","</sentiment_index>",moodstring,5) > 0)
 		{
+			// parse to float
+			mood = atof(moodstring);
 			Serial.print("mood: ");
-			Serial.print(moodstring);
+			Serial.print(mood);
 			Serial.println();
 		}
 		else
