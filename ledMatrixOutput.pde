@@ -5,7 +5,7 @@
 // defines which pin each row is attached to - rows are common anode (drive HIGH)
 int rowA[] = {9,8,7,6,5,4,3,2};
 // defines which pin each column is attached to - columns are common cathode (drive LOW)
-int colA[] = {17,16,15,14,13,12,11,10};
+int colA[] = {17,16,15,14,13,12,18,10};
 
 // bitmaps
 byte smile[] = {0,0,0,0,0,0,0,0};
@@ -116,6 +116,5 @@ void doOutput()
 				digitalWrite(rowA[row], HIGH);
 			}
 		}
-	} 
-	delay(10);
+	}
 }
