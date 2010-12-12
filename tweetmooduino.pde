@@ -38,7 +38,7 @@ void loop()
 	doOutput();
 
 	// wait x seconds between requests
-	if( millis() - lastRequestTime > 10000 )
+	if( millis() - lastRequestTime > 30000 )
 	{
 		if (client.connect())
 		{
@@ -46,7 +46,7 @@ void loop()
 		
 			// build the HTTP request string
 			String request = "GET ";
-			request += "http://query.yahooapis.com/v1/public/yql?q=SELECT%20sentiment_index%20FROM%20json%20WHERE%20url%20%3D%20%22http://data.tweetsentiments.com:8080/api/search.json%3Ftopic%3Dxfactor%22&format=xml&tsecs=";
+			request += "http://query.yahooapis.com/v1/public/yql?q=SELECT%20sentiment_index%20FROM%20json%20WHERE%20url%20%3D%20%22http://data.tweetsentiments.com:8080/api/search.json%3Ftopic%3D6music%22&format=xml&tsecs=";
 			request += millis()/1000; // cache bust
 			request += " HTTP/1.0";
 			Serial.println( request );
