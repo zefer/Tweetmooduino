@@ -12,7 +12,7 @@ byte smile[] = {0,0,0,0,0,0,0,0};
 byte frown[] = {0,0,0,0,0,0,0,0};
 byte neutral[] = {0,0,0,0,0,0,0,0};
 byte allon[] = {0,0,0,0,0,0,0,0};
-byte* currentOutput = &allon[0];
+byte* currentOutput = &neutral[0];
 
 void initOutput()
 { 
