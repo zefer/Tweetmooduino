@@ -23,12 +23,18 @@ void setup()
 {
 	Ethernet.begin(mac, ip, gateway, subnet); 
 	Serial.begin(9600);
+
+	// init the 8x8 LED Matrix Output
+	initOutput();
+
 	Serial.println("connecting...");  
-	delay(2000);  
+	delay(2000);
 }
 
 void loop()
 {
+	doOutput();
+
 	if (client.connect())
 	{
 		Serial.println("connected...");
@@ -71,7 +77,7 @@ void loop()
 		Serial.println();
 		Serial.println("not connected");
 		delay(1000); 
-	} 
+	}
 
 	client.stop();
 }
@@ -80,6 +86,8 @@ void showMood(float newMood)
 {
 	float moodDelta = newMood - mood;
 	
+	setOutput( moodDelta );
+
 	if( moodDelta == 0 || mood == 0 )
 	{
 		// no mood change or first run
