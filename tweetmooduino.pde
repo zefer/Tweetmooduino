@@ -32,8 +32,16 @@ void loop()
 	if (client.connect())
 	{
 		Serial.println("connected...");
+		
+		// build the HTTP request string
+		String request = "GET ";
+		request += "http://query.yahooapis.com/v1/public/yql?q=SELECT%20sentiment_index%20FROM%20json%20WHERE%20url%20%3D%20%22http://data.tweetsentiments.com:8080/api/search.json%3Ftopic%3Dxfactor%22&format=xml&tsecs=";
+		request += millis()/1000; // cache bust
+		request += " HTTP/1.0";
+		Serial.println( request );
+
 		// do the HTTP GET request
-		client.println("GET http://query.yahooapis.com/v1/public/yql?q=SELECT%20sentiment_index%20FROM%20json%20WHERE%20url%20%3D%20%22http://data.tweetsentiments.com:8080/api/search.json%3Ftopic%3Dxfactor%22&format=xml HTTP/1.0");
+		client.println( request );		
 		client.println();
 	}
 	else
@@ -90,7 +98,7 @@ void showMood(float newMood)
 	}
 	
 	mood = newMood;
-
+	
 	Serial.print("mood: ");
 	Serial.println(newMood);
 }
