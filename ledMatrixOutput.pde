@@ -5,14 +5,14 @@
 // defines which pin each row is attached to - rows are common anode (drive HIGH)
 int rowA[] = {9,8,7,6,5,4,3,2};
 // defines which pin each column is attached to - columns are common cathode (drive LOW)
-int colA[] = {17,16,15,14,13,12,18,10};
+int colA[] = {17,16,15,14,19,12,18,10};
 
 // bitmaps
 byte smile[] = {0,0,0,0,0,0,0,0};
 byte frown[] = {0,0,0,0,0,0,0,0};
 byte neutral[] = {0,0,0,0,0,0,0,0};
 byte allon[] = {0,0,0,0,0,0,0,0};
-byte* currentOutput = &smile[0];
+byte* currentOutput = &allon[0];
 
 void initOutput()
 { 
